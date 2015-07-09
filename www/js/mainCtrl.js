@@ -4,15 +4,15 @@ angular
 
 		$scope.timer = {
 			min: '0',
-			max: '120',
+			max: '43200',
 			value: '0'
 		}
 
   	$scope.start = function(){
         $scope.timer.value--;
-          if($scope.timer.value === 0){
-          	// vibrate function invocation
-        		return;
+          if($scope.timer.value <= 0){
+          	$timeout.cancel(mytimeout);
+        		return false;
         }
         mytimeout = $timeout($scope.start, 1000);
     }
@@ -24,5 +24,10 @@ angular
     $scope.pause = function(){
     	$timeout.cancel(mytimeout)
     }
-	}])
 
+	}])
+	.filter('secondsToTime', [function() {
+    return function(sec) {
+        return new Date(1970, 0, 1).setSeconds(sec);
+    };
+}])

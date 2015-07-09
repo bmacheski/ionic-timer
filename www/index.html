@@ -25,10 +25,10 @@
     <body ng-app="starter" ng-controller="mainCtrl">
 
     <ion-pane>
-      <ion-header-bar class="bar-stable"> 2 Minute Timer </ion-header-bar>
+      <ion-header-bar class="bar-calm"> Timer</ion-header-bar>
 
       <ion-content>
-        <div class="timer-view">{{timer.value}}</div>
+        <div class="timer-view">{{timer.value | secondsToTime | date : 'HH:mm:ss'}}</div>
       <div class="list">
         <div class="item range range-positive">
         <p>0</p>
