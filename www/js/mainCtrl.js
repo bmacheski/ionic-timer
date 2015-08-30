@@ -1,33 +1,32 @@
-angular
-	.module('starter')
-	.controller('mainCtrl', ['$scope','$timeout', function($scope, $timeout){
+  angular
+  .module('starter')
+  .controller('mainCtrl', ['$scope','$timeout', function($scope, $timeout) {
 
-		$scope.timer = {
-			min: '0',
-			max: '43200',
-			value: '0'
-		}
+    $scope.timer = {
+      min: '0',
+      max: '43200',
+      value: '0'
+    }
 
-  	$scope.start = function(){
-        $scope.timer.value--;
-          if($scope.timer.value <= 0){
-          	$timeout.cancel(mytimeout);
-        		return false;
-        }
-        mytimeout = $timeout($scope.start, 1000);
+    $scope.start = function() {
+      $scope.timer.value--;
+      if ($scope.timer.value <= 0) {
+        $timeout.cancel(mytimeout);
+        return false;
+      }
+      mytimeout = $timeout($scope.start, 1000);
     }
 
     $scope.stop = function(){
-        $scope.timer.value = $scope.timer.min;
+      $scope.timer.value = $scope.timer.min;
     }
 
     $scope.pause = function(){
-    	$timeout.cancel(mytimeout)
+      $timeout.cancel(mytimeout);
     }
-
-	}])
-	.filter('secondsToTime', [function() {
+  }])
+  .filter('secondsToTime', [function() {
     return function(sec) {
-        return new Date(1970, 0, 1).setSeconds(sec);
+      return new Date(1970, 0, 1).setSeconds(sec);
     };
-}])
+  }])
